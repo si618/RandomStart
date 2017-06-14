@@ -1,2 +1,2 @@
-# RandomStart
-Simple randomised start timer. Cross platform mobile app.
+# Random Start
+Simple randomised start timer for smartphones.
