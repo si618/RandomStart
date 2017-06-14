@@ -1,2 +1,2 @@
 # Random Start
-Simple randomised start timer for smartphones.
+Simple randomised start timer app for smartphones.
