@@ -18,7 +18,7 @@ namespace RandomStart.Services
         /// <summary>
         ///     <c>True</c> when <see cref="StartRandomTimer" /> has been called but has not completed.
         /// </summary>
-        public bool IsStarting { get; private set; }
+        public bool IsRunning { get; private set; }
 
         /// <summary>Event fired when <see cref="StartRandomTimer" /> called.</summary>
         /// <remarks>Won't fire if previous call has not yet finished.</remarks>
@@ -32,8 +32,8 @@ namespace RandomStart.Services
 
         public void StartRandomTimer()
         {
-            if (IsStarting) return;
-            IsStarting = true;
+            if (IsRunning) return;
+            IsRunning = true;
 
             var minimum = _properties.MinimumDelay;
             var window = minimum + _properties.StartWindow;
@@ -48,7 +48,7 @@ namespace RandomStart.Services
             {
                 Debug.WriteLine($"Start!");
                 Started?.Invoke(this, EventArgs.Empty);
-                IsStarting = false;
+                IsRunning = false;
             };
             timer.Start();
         }

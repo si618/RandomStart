@@ -22,6 +22,8 @@ namespace RandomStart.PageModels
             startService.Started += Started;
         }
 
+        public bool CanStart => !_start.IsRunning;
+
         public string StartText { get; set; } = "Start"; // TODO: i18n if requested
 
         public Color StartColour { get; set; } = Color.Red;
@@ -30,6 +32,8 @@ namespace RandomStart.PageModels
 
         private void Starting(object sender, EventArgs e)
         {
+            // ReSharper disable once ExplicitCallerInfoArgument
+            RaisePropertyChanged(nameof(CanStart));       
             PlaySound(_properties.StartingSound);
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -52,6 +56,8 @@ namespace RandomStart.PageModels
             {
                 StartColour = Color.Red;
                 StartText = "Start"; // TODO: i18n
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(CanStart));
             };
             timer.Start();
         }

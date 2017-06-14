@@ -8,7 +8,7 @@
             Text="{Binding StartText}" Command="{Binding Start}"
             WidthRequest="200" HeightRequest="200" BorderRadius="100" 
             HorizontalOptions="Center" VerticalOptions="Center"
-            BackgroundColor="{Binding StartColour}">
+            BackgroundColor="{Binding StartColour}" IsEnabled="{Binding CanStart}">
         </Button>
     </ContentPage.Content>
 </ContentPage>
