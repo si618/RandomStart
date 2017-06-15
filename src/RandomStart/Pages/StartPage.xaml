@@ -1,14 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RandomStart;assembly=RandomStart"
              x:Class="RandomStart.Pages.StartPage"
              BackgroundColor="Black">
     <ContentPage.Content>
-        <Button 
-            Text="{Binding StartText}" Command="{Binding Start}"
-            WidthRequest="200" HeightRequest="200" BorderRadius="100" 
-            HorizontalOptions="Center" VerticalOptions="Center"
-            BackgroundColor="{Binding StartColour}" IsEnabled="{Binding CanStart}">
-        </Button>
+        <StackLayout>
+            <Image 
+                Source="{local:ImageResource RandomStart.Assets.Menu.png}"
+                HorizontalOptions="Start" VerticalOptions="Start" 
+                Opacity="0.3" />
+            <Button 
+                Text="{Binding StartText}" Command="{Binding Start}" 
+                Image="{local:ImageResource RandomStart.Assets.Start.png}"
+                WidthRequest="250" HeightRequest="250" BorderRadius="125"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                BackgroundColor="{Binding StartColour}" IsEnabled="{Binding CanStart}">
+            </Button>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

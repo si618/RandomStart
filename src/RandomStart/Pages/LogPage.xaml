@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomStart.Pages.LogPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+        <Label Text="{Binding Log}" LineBreakMode="NoWrap" />
     </ContentPage.Content>
 </ContentPage>

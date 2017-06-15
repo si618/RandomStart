@@ -128,6 +128,10 @@
       <HintPath>..\packages\XamarinAudioManager.0.8.6\lib\Xamarin.iOS10\AudioManager.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ExifLib, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExifLib.PCL.1.0.2-pre01\lib\netstandard1.0\ExifLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FreshIOC, Version=1.0.6071.17008, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FreshMvvm.2.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\FreshIOC.dll</HintPath>
       <Private>True</Private>

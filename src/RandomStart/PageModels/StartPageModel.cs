@@ -5,6 +5,7 @@ using FreshMvvm;
 using PropertyChanged;
 using RandomStart.Services;
 using Xamarin.Forms;
+using RandomStart.Resources;
 
 namespace RandomStart.PageModels
 {
@@ -24,7 +25,7 @@ namespace RandomStart.PageModels
 
         public bool CanStart => !_start.IsRunning;
 
-        public string StartText { get; set; } = "Start"; // TODO: i18n if requested
+        public string StartText { get; set; } = AppResources.StartText;
 
         public Color StartColour { get; set; } = Color.Red;
 
@@ -38,7 +39,7 @@ namespace RandomStart.PageModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 StartColour = Color.Yellow;
-                StartText = "Wait for it..."; // TODO: i18n
+                StartText = AppResources.StartingText;
             });
         }
 
@@ -48,14 +49,14 @@ namespace RandomStart.PageModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 StartColour = Color.Green;
-                StartText = "Go!"; // TODO: i18n
+                StartText = AppResources.StartedText;
             });
 
             var timer = new CountDownTimer(TimeSpan.FromMilliseconds(314));
             timer.ReachedZero += (_, __) =>
             {
                 StartColour = Color.Red;
-                StartText = "Start"; // TODO: i18n
+                StartText = AppResources.StartText;
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(CanStart));
             };

@@ -4,7 +4,10 @@
              x:Class="RandomStart.Pages.PropertyPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+            <Label Text="{Binding MinimumDelayLabel}" />
+            <Label Text="{Binding StartWindowLabel}" />
+            <Label Text="{Binding StartingSoundLabel}" />
+            <Label Text="{Binding StartedSoundLabel}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

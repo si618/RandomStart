@@ -28,9 +28,12 @@ namespace RandomStart.Services
                 ? Application.Current.Properties["StartingSound"].ToString()
                 : string.Empty;
 
+            /*
             StartedSound = Application.Current.Properties.ContainsKey("StartedSound")
                 ? Application.Current.Properties["StartedSound"].ToString()
-                : string.Empty;
+                : "Start.mp3";
+            */
+            StartedSound = "Start.mp3";
         }
 
         public int MinimumDelay
