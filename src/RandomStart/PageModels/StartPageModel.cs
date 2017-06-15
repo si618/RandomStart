@@ -15,6 +15,11 @@ namespace RandomStart.PageModels
         private readonly IPropertyService _properties;
         private readonly RandomStartService _start;
 
+        public StartPageModel()
+        {
+            // Default ctor for page binding
+        }
+
         public StartPageModel(RandomStartService startService, IPropertyService propertyService)
         {
             _start = startService;
@@ -65,10 +70,17 @@ namespace RandomStart.PageModels
 
         private static async void PlaySound(string filename)
         {
-            if (!string.IsNullOrEmpty(filename))
+            if (string.IsNullOrEmpty(filename))
             {
-                await Audio.Manager.PlaySound(filename);
+                return;
             }
+            var effectsOn = Audio.Manager.EffectsOn;
+            var effectsVolume = Audio.Manager.EffectsVolume;
+            Audio.Manager.EffectsOn = true;
+            Audio.Manager.EffectsVolume = 1;    
+            await Audio.Manager.PlaySound(filename);
+            Audio.Manager.EffectsOn = effectsOn;
+            Audio.Manager.EffectsVolume = effectsVolume;
         }
     }
 }

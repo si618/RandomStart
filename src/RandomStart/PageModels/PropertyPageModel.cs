@@ -10,6 +10,10 @@ namespace RandomStart.PageModels
     {
         private readonly IPropertyService _properties;
 
+        public PropertyPageModel()
+        {
+            // Default ctor for page binding
+        }
         public PropertyPageModel(IPropertyService propertyService)
         {
             _properties = propertyService;

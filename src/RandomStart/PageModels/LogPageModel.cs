@@ -8,6 +8,7 @@ namespace RandomStart.PageModels
     {
         public LogPageModel()
         {
+            // Default ctor for page binding
         }
 
         public string Log { get; set; }
