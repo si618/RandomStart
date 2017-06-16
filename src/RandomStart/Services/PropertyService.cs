@@ -24,15 +24,16 @@ namespace RandomStart.Services
                 StartWindow = 5000; // default to 5 seconds
             }
 
+            /*
             StartingSound = Application.Current.Properties.ContainsKey("StartingSound")
                 ? Application.Current.Properties["StartingSound"].ToString()
                 : string.Empty;
 
-            /*
             StartedSound = Application.Current.Properties.ContainsKey("StartedSound")
                 ? Application.Current.Properties["StartedSound"].ToString()
                 : "Start.mp3";
             */
+            StartingSound = "Arm.mp3";
             StartedSound = "Start.mp3";
         }
 

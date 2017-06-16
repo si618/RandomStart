@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Menu.png" />
+    <Content Include="Assets\Arm.mp3" />
     <Content Include="Assets\Start.mp3" />
     <EmbeddedResource Include="Assets\Start.png" />
     <EmbeddedResource Include="Assets\StartPressed.png" />
