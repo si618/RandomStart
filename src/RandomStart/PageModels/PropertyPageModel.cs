@@ -8,15 +8,18 @@ namespace RandomStart.PageModels
     [AddINotifyPropertyChangedInterface]
     public class PropertyPageModel : FreshBasePageModel
     {
-        private readonly IPropertyService _properties;
+        private readonly IAudioService _audioService;
+        private readonly IPropertyService _propertyService;
 
         public PropertyPageModel()
         {
-            // Default ctor for page binding
+            // Default ctor needed for design-time page binding context
         }
-        public PropertyPageModel(IPropertyService propertyService)
+
+        public PropertyPageModel(IAudioService audioService, IPropertyService propertyService)
         {
-            _properties = propertyService;
+            _audioService = audioService;
+            _propertyService = propertyService;
         }
 
         public string MinimumDelayLabel => AppResources.MinimumDelayLabel;
@@ -26,37 +29,37 @@ namespace RandomStart.PageModels
 
         public int MinimumDelay
         {
-            get { return _properties.MinimumDelay; }
+            get { return _propertyService.MinimumDelay; }
             set
             {
-                _properties.MinimumDelay = value;
+                _propertyService.MinimumDelay = value;
             }
         }
 
         public int StartWindow
         {
-            get { return _properties.StartWindow; }
+            get { return _propertyService.StartWindow; }
             set
             {
-                _properties.StartWindow = value;
+                _propertyService.StartWindow = value;
             }
         }
 
         public string StartingSound
         {
-            get { return _properties.StartingSound; }
+            get { return _propertyService.StartingSound; }
             set
             {
-                _properties.StartingSound = value;
+                _propertyService.StartingSound = value;
             }
         }
 
         public string StartedSound
         {
-            get { return _properties.StartedSound; }
+            get { return _propertyService.StartedSound; }
             set
             {
-                _properties.StartedSound = value;
+                _propertyService.StartedSound = value;
             }
         }
     }

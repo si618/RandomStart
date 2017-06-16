@@ -38,8 +38,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ImageResourceExtension.cs" />
+    <Compile Include="PageModels\MenuPageModel.cs" />
     <Compile Include="PageModels\LogPageModel.cs" />
     <Compile Include="PageModels\PropertyPageModel.cs" />
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LogPage.xaml.cs">
       <DependentUpon>LogPage.xaml</DependentUpon>
     </Compile>
@@ -57,6 +61,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\IAudioService.cs" />
     <Compile Include="Services\IPropertyService.cs" />
     <Compile Include="Services\PropertyService.cs" />
     <Compile Include="Services\RandomStartService.cs" />
@@ -128,6 +134,12 @@
     <Content Include="Assets\Start.mp3" />
     <EmbeddedResource Include="Assets\Start.png" />
     <EmbeddedResource Include="Assets\StartPressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

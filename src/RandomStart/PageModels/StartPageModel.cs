@@ -1,46 +1,48 @@
-﻿using System;
-using Amoenus.PclTimer;
-using AudioManager;
+﻿using Amoenus.PclTimer;
 using FreshMvvm;
 using PropertyChanged;
 using RandomStart.Services;
-using Xamarin.Forms;
 using RandomStart.Resources;
+using System;
+using Xamarin.Forms;
 
 namespace RandomStart.PageModels
 {
     [AddINotifyPropertyChangedInterface]
     public class StartPageModel : FreshBasePageModel
     {
-        private readonly IPropertyService _properties;
-        private readonly RandomStartService _start;
+        private readonly IAudioService _audioService;
+        private readonly IPropertyService _propertyService;
+        private readonly RandomStartService _randomStartService;
 
         public StartPageModel()
         {
-            // Default ctor for page binding
+            // Default ctor needed for design-time page binding context
         }
 
-        public StartPageModel(RandomStartService startService, IPropertyService propertyService)
+        public StartPageModel(IAudioService audioService, IPropertyService propertyService,
+            RandomStartService startService)
         {
-            _start = startService;
-            _properties = propertyService;
-            startService.Starting += Starting;
-            startService.Started += Started;
+            _audioService = audioService;
+            _propertyService = propertyService;
+            _randomStartService = startService;
+            _randomStartService.Starting += Starting;
+            _randomStartService.Started += Started;
         }
 
-        public bool CanStart => !_start.IsRunning;
+        public bool CanStart => !_randomStartService.IsRunning;
 
         public string StartText { get; set; } = AppResources.StartText;
 
         public Color StartColour { get; set; } = Color.Red;
 
-        public Command Start => new Command(() => _start.StartRandomTimer());
+        public Command Start => new Command(() => _randomStartService.StartRandomTimer());
 
         private void Starting(object sender, EventArgs e)
         {
             // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(CanStart));       
-            PlaySound(_properties.StartingSound);
+            _audioService.Play(_propertyService.StartingSound);
             Device.BeginInvokeOnMainThread(() =>
             {
                 StartColour = Color.Yellow;
@@ -50,14 +52,14 @@ namespace RandomStart.PageModels
 
         private void Started(object sender, EventArgs e)
         {
-            PlaySound(_properties.StartedSound);
+            _audioService.Play(_propertyService.StartedSound);
             Device.BeginInvokeOnMainThread(() =>
             {
                 StartColour = Color.Green;
                 StartText = AppResources.StartedText;
             });
 
-            var timer = new CountDownTimer(TimeSpan.FromMilliseconds(314));
+            var timer = new CountDownTimer(TimeSpan.FromMilliseconds(250));
             timer.ReachedZero += (_, __) =>
             {
                 StartColour = Color.Red;
@@ -66,21 +68,6 @@ namespace RandomStart.PageModels
                 RaisePropertyChanged(nameof(CanStart));
             };
             timer.Start();
-        }
-
-        private static async void PlaySound(string filename)
-        {
-            if (string.IsNullOrEmpty(filename))
-            {
-                return;
-            }
-            var effectsOn = Audio.Manager.EffectsOn;
-            var effectsVolume = Audio.Manager.EffectsVolume;
-            Audio.Manager.EffectsOn = true;
-            Audio.Manager.EffectsVolume = 1;    
-            await Audio.Manager.PlaySound(filename);
-            Audio.Manager.EffectsOn = effectsOn;
-            Audio.Manager.EffectsVolume = effectsVolume;
         }
     }
 }

@@ -1,22 +1,22 @@
-﻿using System;
+﻿using Amoenus.PclTimer;
+using System;
 using System.Diagnostics;
-using Amoenus.PclTimer;
 
 namespace RandomStart.Services
 {
     /// <summary>Service to trigger random start time.</summary>
     public class RandomStartService
     {
-        private readonly IPropertyService _properties;
+        private readonly IPropertyService _propertyService;
         private readonly Random _random = new Random(); // seeded from system time
 
         public RandomStartService(IPropertyService properties)
         {
-            _properties = properties;
+            _propertyService = properties;
         }
 
         /// <summary>
-        ///     <c>True</c> when <see cref="StartRandomTimer" /> has been called but has not completed.
+        /// <c>True</c> when <see cref="StartRandomTimer" /> has been called but has not completed.
         /// </summary>
         public bool IsRunning { get; private set; }
 
@@ -35,8 +35,8 @@ namespace RandomStart.Services
             if (IsRunning) return;
             IsRunning = true;
 
-            var minimum = _properties.MinimumDelay;
-            var window = minimum + _properties.StartWindow;
+            var minimum = _propertyService.MinimumDelay;
+            var window = minimum + _propertyService.StartWindow;
 
             Starting?.Invoke(this, EventArgs.Empty);
 
