@@ -138,4 +138,13 @@
   <data name="StartWindowLabel" xml:space="preserve">
     <value>Start Window (ms)</value>
   </data>
+  <data name="LogPageText" xml:space="preserve">
+    <value>Event Log</value>
+  </data>
+  <data name="MenuPageTitle" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="PropertyPageText" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

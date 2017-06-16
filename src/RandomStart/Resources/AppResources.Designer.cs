@@ -62,11 +62,38 @@ namespace RandomStart.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Log.
+        /// </summary>
+        internal static string LogPageText {
+            get {
+                return ResourceManager.GetString("LogPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        internal static string MenuPageTitle {
+            get {
+                return ResourceManager.GetString("MenuPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum Delay (ms).
         /// </summary>
         internal static string MinimumDelayLabel {
             get {
                 return ResourceManager.GetString("MinimumDelayLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string PropertyPageText {
+            get {
+                return ResourceManager.GetString("PropertyPageText", resourceCulture);
             }
         }
         
