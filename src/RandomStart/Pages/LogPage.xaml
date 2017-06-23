@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomStart.Pages.LogPage">
     <ContentPage.Content>
-        <Label Text="{Binding Log}" LineBreakMode="NoWrap" />
+        <Label Text="{Binding Log}" LineBreakMode="NoWrap"/>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Serilog;
+using Xamarin.Forms;
 
 namespace RandomStart.Services
 {
@@ -23,7 +24,6 @@ namespace RandomStart.Services
             {
                 StartWindow = 5000; // default to 5 seconds
             }
-
             /*
             StartingSound = Application.Current.Properties.ContainsKey("StartingSound")
                 ? Application.Current.Properties["StartingSound"].ToString()
@@ -35,6 +35,11 @@ namespace RandomStart.Services
             */
             StartingSound = "Arm.mp3";
             StartedSound = "Start.mp3";
+
+            Log.Information($"Minimum delay: {MinimumDelay} ms");
+            Log.Information($"Start window: {StartWindow} ms");
+            Log.Information($"Starting sound: {StartingSound}");
+            Log.Information($"Started sound: {StartedSound}");
         }
 
         public int MinimumDelay
@@ -46,6 +51,7 @@ namespace RandomStart.Services
                 // TODO: Validation: Must be > 0
                 _minimumDelay = value;
                 Application.Current.Properties["MinimumDelay"] = _minimumDelay;
+                Log.Information($"Minimum delay: {MinimumDelay} ms");
             }
         }
 
@@ -58,6 +64,7 @@ namespace RandomStart.Services
                 // TODO: Validation: Must be > 0
                 _startWindow = value;
                 Application.Current.Properties["StartWindow"] = _startWindow;
+                Log.Information($"Start window: {StartWindow} ms");
             }
         }
 
@@ -70,6 +77,7 @@ namespace RandomStart.Services
                 // TODO: Validation: Path must exist
                 _startingSound = value;
                 Application.Current.Properties["StartingSound"] = _startingSound;
+                Log.Information($"Starting sound: {StartingSound}");
             }
         }
 
@@ -82,6 +90,7 @@ namespace RandomStart.Services
                 // TODO: Validation: Path must exist
                 _startedSound = value;
                 Application.Current.Properties["StartedSound"] = _startedSound;
+                Log.Information($"Started sound: {StartedSound}");
             }
         }
     }

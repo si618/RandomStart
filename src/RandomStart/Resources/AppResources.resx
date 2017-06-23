@@ -147,4 +147,7 @@
   <data name="PropertyPageText" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="StartPageText" xml:space="preserve">
+    <value>Random Start</value>
+  </data>
 </root>

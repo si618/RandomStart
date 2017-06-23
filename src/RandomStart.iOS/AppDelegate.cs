@@ -25,6 +25,11 @@ namespace RandomStart.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
+            // Prevent app from sleeping
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
+
+            var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
+
             return base.FinishedLaunching(app, options);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Amoenus.PclTimer;
+using Serilog;
 using System;
 using System.Diagnostics;
 
@@ -32,7 +33,12 @@ namespace RandomStart.Services
 
         public void StartRandomTimer()
         {
-            if (IsRunning) return;
+            if (IsRunning)
+            {
+                Log.Debug($"Timer already running");
+                return;
+            }
+            Log.Debug($"Random start triggered at {DateTime.Now}");
             IsRunning = true;
 
             var minimum = _propertyService.MinimumDelay;
@@ -41,12 +47,13 @@ namespace RandomStart.Services
             Starting?.Invoke(this, EventArgs.Empty);
 
             var sleep = _random.Next(minimum, window);
-            Debug.WriteLine($"Sleeping for {sleep}ms");
+
+            Log.Information($"Sleeping for {sleep}ms");
 
             var timer = new CountDownTimer(TimeSpan.FromMilliseconds(sleep));
             timer.ReachedZero += (_, __) =>
             {
-                Debug.WriteLine($"Start!");
+                Log.Information($"Start!");
                 Started?.Invoke(this, EventArgs.Empty);
                 IsRunning = false;
             };

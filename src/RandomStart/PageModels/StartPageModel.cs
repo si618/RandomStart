@@ -57,8 +57,7 @@ namespace RandomStart.PageModels
             {
                 StartColour = Color.Green;
                 StartText = AppResources.StartedText;
-            });
-
+            });           
             var timer = new CountDownTimer(TimeSpan.FromMilliseconds(250));
             timer.ReachedZero += (_, __) =>
             {

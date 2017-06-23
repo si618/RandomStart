@@ -134,6 +134,15 @@ namespace RandomStart.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Random Start.
+        /// </summary>
+        internal static string StartPageText {
+            get {
+                return ResourceManager.GetString("StartPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string StartText {

@@ -2,7 +2,10 @@
 using RandomStart.PageModels;
 using RandomStart.Resources;
 using RandomStart.Services;
+using Serilog;
+using System.Globalization;
 using Xamarin.Forms;
+using Xamarin.Forms.Themes;
 
 namespace RandomStart
 {
@@ -10,17 +13,29 @@ namespace RandomStart
     {
         public App()
         {
+            SetupLogging();
             Register();
             LoadStartPage();
         }
 
+        private void SetupLogging()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.LogService()
+                .CreateLogger();
+        }
+
         private static void Register()
         {
+            // These classes have external dependencies, so are interface based to allow mocking.
             FreshIOC.Container.Register<IAudioService, AudioService>();
             FreshIOC.Container.Register<IPropertyService, PropertyService>();
-            
+
             // FreshIOC uses default ctor unless told otherwise, which is needed for design-time
-            // binding context, but at runtime overloaded ctor is needed to avoid null references.
+            // binding, but at runtime the overloaded ctor is needed to avoid null references.
+            FreshIOC.Container.Register<LogPageModel, LogPageModel>()
+                .UsingConstructor(() => new LogPageModel(
+                    FreshIOC.Container.Resolve<LogService>()));
             FreshIOC.Container.Register<StartPageModel, StartPageModel>()
                 .UsingConstructor(() => new StartPageModel(
                     FreshIOC.Container.Resolve<IAudioService>(),
@@ -34,26 +49,13 @@ namespace RandomStart
 
         public void LoadStartPage()
         {
-            MainPage = FreshPageModelResolver.ResolvePageModel<StartPageModel>();
-        }
+            Resources = new DarkThemeResources();
 
-        public void LoadMenuPage()
-        {
-            var masterDetailNav = new FreshMasterDetailNavigationContainer();
-            masterDetailNav.Init(AppResources.MenuPageTitle, "Resources.Menu.png");
-            masterDetailNav.AddPage<PropertyPageModel>(AppResources.PropertyPageText, null);
-            masterDetailNav.AddPage<LogPageModel>(AppResources.LogPageText, null);
-            MainPage = masterDetailNav;
-        }
-
-        public void LoadPropertiesPage()
-        {
-            //MainPage = FreshPageModelResolver.ResolvePageModel<PropertyPageModel>();
-        }
-
-        public void LoadLogPage()
-        {
-            //MainPage = FreshPageModelResolver.ResolvePageModel<LogPageModel>();
+            var mainPage = new NavigationService();
+            mainPage.AddPage<StartPageModel>(AppResources.StartPageText, null);
+            mainPage.AddPage<PropertyPageModel>(AppResources.PropertyPageText, null);
+            mainPage.AddPage<LogPageModel>(AppResources.LogPageText, null);
+            MainPage = mainPage;
         }
 
         protected override void OnStart()
@@ -61,8 +63,8 @@ namespace RandomStart
             // Workaround for https://github.com/jcphlux/XamarinAudioManager/issues/12
             var propertyService = FreshIOC.Container.Resolve<IPropertyService>();
             var audioService = FreshIOC.Container.Resolve<IAudioService>();
-            audioService.Play(propertyService.StartingSound, 0.001f);
-            audioService.Play(propertyService.StartedSound, 0.001f);
+            audioService.Play(propertyService.StartingSound, 0.0001f);
+            audioService.Play(propertyService.StartedSound, 0.0001f);
         }
 
         protected override void OnSleep()

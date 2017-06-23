@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RandomStart.Pages.PropertyPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding MinimumDelayLabel}" />
-            <Label Text="{Binding StartWindowLabel}" />
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="{Binding MinimumDelayLabel}" FontSize="Medium" />
+            <Entry Text="{Binding MinimumDelay}" Keyboard="Numeric" FontSize="Medium" />
+            <Label Text="{Binding StartWindowLabel}" FontSize="Medium" />
+            <Entry Text="{Binding StartWindow}" Keyboard="Numeric" FontSize="Medium" />
+            <!-- TODO
             <Label Text="{Binding StartingSoundLabel}" />
             <Label Text="{Binding StartedSoundLabel}" />
+            -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
