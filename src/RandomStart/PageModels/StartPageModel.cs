@@ -1,9 +1,9 @@
-﻿using Amoenus.PclTimer;
+﻿using System;
+using Amoenus.PclTimer;
 using FreshMvvm;
 using PropertyChanged;
-using RandomStart.Services;
 using RandomStart.Resources;
-using System;
+using RandomStart.Services;
 using Xamarin.Forms;
 
 namespace RandomStart.PageModels
@@ -36,12 +36,15 @@ namespace RandomStart.PageModels
 
         public Color StartColour { get; set; } = Color.Red;
 
+        public Color StartTextColour => StartColour == Color.Yellow ? Color.Black : Color.White;
+
+
         public Command Start => new Command(() => _randomStartService.StartRandomTimer());
 
         private void Starting(object sender, EventArgs e)
         {
             // ReSharper disable once ExplicitCallerInfoArgument
-            RaisePropertyChanged(nameof(CanStart));       
+            RaisePropertyChanged(nameof(CanStart));
             _audioService.Play(_propertyService.StartingSound);
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -57,7 +60,7 @@ namespace RandomStart.PageModels
             {
                 StartColour = Color.Green;
                 StartText = AppResources.StartedText;
-            });           
+            });
             var timer = new CountDownTimer(TimeSpan.FromMilliseconds(250));
             timer.ReachedZero += (_, __) =>
             {

@@ -1,7 +1,7 @@
-﻿using FreshMvvm;
+﻿using System;
+using FreshMvvm;
 using PropertyChanged;
 using RandomStart.Services;
-using System;
 
 namespace RandomStart.PageModels
 {
@@ -16,14 +16,11 @@ namespace RandomStart.PageModels
         public LogPageModel(LogService logService)
         {
             LogService = logService;
-            LogService.Emitted += (obj, args) =>
-            {
-                Log += Environment.NewLine + args.Message;
-            };
+            LogService.Emitted += (obj, args) => { Log += Environment.NewLine + args.Message; };
         }
 
         private LogService LogService { get; }
 
         public string Log { get; set; }
-   }
+    }
 }

@@ -3,7 +3,6 @@ using RandomStart.PageModels;
 using RandomStart.Resources;
 using RandomStart.Services;
 using Serilog;
-using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Themes;
 
@@ -43,7 +42,6 @@ namespace RandomStart
                     FreshIOC.Container.Resolve<RandomStartService>()));
             FreshIOC.Container.Register<PropertyPageModel, PropertyPageModel>()
                 .UsingConstructor(() => new PropertyPageModel(
-                    FreshIOC.Container.Resolve<IAudioService>(),
                     FreshIOC.Container.Resolve<IPropertyService>()));
         }
 
@@ -52,9 +50,9 @@ namespace RandomStart
             Resources = new DarkThemeResources();
 
             var mainPage = new NavigationService();
-            mainPage.AddPage<StartPageModel>(AppResources.StartPageText, null);
-            mainPage.AddPage<PropertyPageModel>(AppResources.PropertyPageText, null);
-            mainPage.AddPage<LogPageModel>(AppResources.LogPageText, null);
+            mainPage.AddPage<StartPageModel>(AppResources.StartPageText);
+            mainPage.AddPage<PropertyPageModel>(AppResources.PropertyPageText);
+            mainPage.AddPage<LogPageModel>(AppResources.LogPageText);
             MainPage = mainPage;
         }
 

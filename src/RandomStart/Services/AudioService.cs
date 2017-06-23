@@ -1,4 +1,5 @@
-﻿using AudioManager;
+﻿using System;
+using AudioManager;
 
 namespace RandomStart.Services
 {
@@ -7,7 +8,7 @@ namespace RandomStart.Services
     {
         public async void Play(string filename, float volume = 1)
         {
-            if (string.IsNullOrEmpty(filename) || volume == 0)
+            if (string.IsNullOrEmpty(filename) || Math.Abs(volume) <= 0)
             {
                 return;
             }

@@ -1,18 +1,14 @@
-﻿using Serilog;
+﻿using System;
+using System.Globalization;
+using Serilog;
 using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
-using System;
-using System.Globalization;
 
 namespace RandomStart.Services
 {
     public class LogService : ILogEventSink
     {
-        public LogService()
-        {
-        }
-
         public void Emit(LogEvent logEvent)
         {
             var message = logEvent.RenderMessage(CultureInfo.CurrentCulture);
@@ -30,12 +26,14 @@ namespace RandomStart.Services
             return loggerConfiguration.Sink(new LogService());
         }
     }
+
     public class LogEventArgs : EventArgs
     {
-        public string Message { get; set; }
         public LogEventArgs(string message)
         {
             Message = message;
         }
+
+        public string Message { get; set; }
     }
 }

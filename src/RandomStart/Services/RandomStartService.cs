@@ -1,7 +1,6 @@
-﻿using Amoenus.PclTimer;
+﻿using System;
+using Amoenus.PclTimer;
 using Serilog;
-using System;
-using System.Diagnostics;
 
 namespace RandomStart.Services
 {
@@ -17,7 +16,7 @@ namespace RandomStart.Services
         }
 
         /// <summary>
-        /// <c>True</c> when <see cref="StartRandomTimer" /> has been called but has not completed.
+        ///     <c>True</c> when <see cref="StartRandomTimer" /> has been called but has not completed.
         /// </summary>
         public bool IsRunning { get; private set; }
 
