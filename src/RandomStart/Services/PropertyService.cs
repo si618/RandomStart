@@ -33,8 +33,8 @@ namespace RandomStart.Services
                 ? Application.Current.Properties["StartedSound"].ToString()
                 : "Start.mp3";
             */
-            StartingSound = "Arm.mp3";
-            StartedSound = "Start.mp3";
+            StartingSound = "Starting.mp3";
+            StartedSound = "Started.mp3";
 
             Log.Information($"Minimum delay: {MinimumDelay} ms");
             Log.Information($"Start window: {StartWindow} ms");

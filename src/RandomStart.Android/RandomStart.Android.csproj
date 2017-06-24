@@ -195,13 +195,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\RandomStart\Assets\Start.mp3">
-      <Link>Assets\Sounds\Start.mp3</Link>
+    <AndroidAsset Include="..\RandomStart\Assets\Started.mp3">
+      <Link>Assets\Sounds\Started.mp3</Link>
     </AndroidAsset>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\RandomStart\Assets\Arm.mp3">
-      <Link>Assets\Sounds\Arm.mp3</Link>
+    <AndroidAsset Include="..\RandomStart\Assets\Starting.mp3">
+      <Link>Assets\Sounds\Starting.mp3</Link>
     </AndroidAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
