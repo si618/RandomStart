@@ -22,7 +22,7 @@ namespace RandomStart.Services
             if (!Application.Current.Properties.ContainsKey("StartWindow") ||
                 !int.TryParse(Application.Current.Properties["StartWindow"].ToString(), out _startWindow))
             {
-                StartWindow = 5000; // default to 5 seconds
+                StartWindow = 4000; // default to 4 seconds
             }
             /*
             StartingSound = Application.Current.Properties.ContainsKey("StartingSound")
