@@ -16,13 +16,15 @@ namespace RandomStart.Services
             if (!Application.Current.Properties.ContainsKey("MinimumDelay") ||
                 !int.TryParse(Application.Current.Properties["MinimumDelay"].ToString(), out _minimumDelay))
             {
-                MinimumDelay = 1000; // default to 1 second
+                // default to 8 seconds, which is just longer than length of Starting.mp3
+                MinimumDelay = 8000; 
             }
 
             if (!Application.Current.Properties.ContainsKey("StartWindow") ||
                 !int.TryParse(Application.Current.Properties["StartWindow"].ToString(), out _startWindow))
             {
-                StartWindow = 4000; // default to 4 seconds
+                // default to 5 seconds, which is mentioned in Startin.mp3
+                StartWindow = 5000; 
             }
             /*
             StartingSound = Application.Current.Properties.ContainsKey("StartingSound")

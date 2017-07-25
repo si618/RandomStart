@@ -154,9 +154,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RandomStarter\RandomStarter.csproj">
-      <Project>{79c07681-626c-41ef-ad32-afa6b59624e4}</Project>
-      <Name>RandomStarter</Name>
+    <ProjectReference Include="..\RandomStart\RandomStart.csproj">
+      <Project>{fabf2aa8-6ef0-4e6a-9641-291c906e59c2}</Project>
+      <Name>RandomStart</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
